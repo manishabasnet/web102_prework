@@ -14,6 +14,8 @@ body {
 
 .header {
    display: flex;
+   justify-content: space-between;
+   align-items: center;
    background-color: lightblue;
    padding: 1%;
    align-items: center;
@@ -22,7 +24,27 @@ body {
    margin-top: -10px;
 }
 
+.search-bar{
+    padding: 5px 40px 5px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    width: 65%;
+    background-color: white;
+    margin-left: 14px;
+}
 
+.search-bar {
+    order: 2; /* Set the order to 2 to move it to the right */
+}
+
+.search-bar i {
+    margin-right: 8px; /* Adjust the margin as needed */
+}
+
+.search-bar input[type="text"] {
+    border: none;
+    outline: none; /* Optional: Remove the outline on focus */
+}
 
 .stats-container {
    display: flex;

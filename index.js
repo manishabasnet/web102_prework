@@ -38,9 +38,6 @@ function addGamesToPage(games) {
    // loop over each item in the data
    for (let i=0; i < games.length; i++) {
 
-
-
-
        // create a new div element, which will become the game card
        const gameCard = document.createElement("div");
 
@@ -239,7 +236,6 @@ const [topGame, runnerUpGame] = sortedGames;
 const topGameElement = document.createElement("div");
 topGameElement.innerHTML = `
     <p>${topGame.name}</p>
-    <p>Pledged: $${topGame.pledged.toLocaleString()}</p>
 `;
 firstGameContainer.appendChild(topGameElement);
 
@@ -248,6 +244,32 @@ firstGameContainer.appendChild(topGameElement);
 const runnerUpGameElement = document.createElement("div");
 runnerUpGameElement.innerHTML = `
     <p>${runnerUpGame.name}</p>
-    <p>Pledged: $${runnerUpGame.pledged.toLocaleString()}</p>
 `;
 secondGameContainer.appendChild(runnerUpGameElement);
+
+/**************************************************************
+ * search feature costumozation
+ * The games container contains only the games with the search input in either name or description
+*/
+
+// grab the search input element
+const searchInput = document.getElementById("searchInput");
+
+// add an input event listener to the search input
+searchInput.addEventListener('input', function () {
+    searchGames(this.value.toLowerCase());
+});
+
+function searchGames(searchTerm){
+    deleteChildElements(gamesContainer);
+
+
+    //get a list of games that match the search term
+        const matchingGames = GAMES_JSON.filter((game) => {
+        const lowerCaseName = game.name.toLowerCase();
+        const lowerCaseDescription = game.description.toLowerCase();
+        return lowerCaseName.includes(searchTerm) || lowerCaseDescription.includes(searchTerm);
+    });
+
+    addGamesToPage(matchingGames);
+}
